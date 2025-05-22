@@ -44,7 +44,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
         }
         
-        // 2. 카카오 로그인 헤더 확인
+        // 2. 카카오 로그인 헤더 확인 이건 건들지 마쇼
         String kakaoHeader = request.getHeader("X-Kakao-Auth");
         if (kakaoHeader != null && kakaoHeader.startsWith("Kakao ")) {
             String accessToken = kakaoHeader.substring(6);
