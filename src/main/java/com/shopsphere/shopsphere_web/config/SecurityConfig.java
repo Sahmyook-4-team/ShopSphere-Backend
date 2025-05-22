@@ -21,14 +21,21 @@ import static org.springframework.security.config.Customizer.withDefaults; // �
 @EnableWebSecurity
 public class SecurityConfig {
 
+   @Autowired
+    private AuthenticationFilter authenticationFilter;
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .cors(withDefaults()) // ✅ 핵심: cors 설정 활성화
+            .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/users/**", "/error").permitAll()
                 .anyRequest().authenticated()
+            )
+            .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationToken.class)
+            .sessionManagement(session -> session
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
             )
             .exceptionHandling(ex -> ex
                 .authenticationEntryPoint((request, response, authException) -> {
