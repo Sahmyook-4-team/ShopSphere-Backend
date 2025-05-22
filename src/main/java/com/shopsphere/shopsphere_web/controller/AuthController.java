@@ -43,19 +43,4 @@ public class AuthController {
             return ResponseEntity.status(500).body("{\"message\": \"" + e.getMessage() + "\"}");
         }
     }
-
-    //     // 2. Access Token으로 카카오 사용자 정보 요청 및 처리
-    //     User user = userService.processKakaoLogin(accessToken);
-
-    //     if (user != null) {
-    //         String token = jwtUtil.createToken(user.getId());
-    //         Map<String, Object> response = new HashMap<>();
-    //         response.put("token", token);
-    //         response.put("userId", user.getId());
-    //         response.put("name", user.getName());
-    //         return ResponseEntity.ok(response);
-    //     } else {
-    //         return ResponseEntity.status(401).body(Map.of("message", "Kakao login failed"));
-    //     }
-    // }
 }
