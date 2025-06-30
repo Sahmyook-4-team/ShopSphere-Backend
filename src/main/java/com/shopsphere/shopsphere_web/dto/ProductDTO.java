@@ -22,6 +22,8 @@ public class ProductDTO {
     private Integer salesVolume;
     private List<ProductOptionDTO> options;
     private List<ProductImageDTO> images;
+    private String thumbnailUrl;
+
 
     @Data
     public static class CreateRequest {
@@ -53,7 +55,7 @@ public class ProductDTO {
         private String description;
         private Integer price;
         private Integer stockQuantity;
-        // private String imageUrl; // ProductImage로 통합 관리 시 이 필드는 제거 또는 대표 이미지 URL만 저장
+        private String imageUrl; // ProductImage로 통합 관리 시 이 필드는 제거 또는 대표 이미지 URL만 저장
         private LocalDateTime createdAt;
         private UserDTO.Response seller;
         private Integer salesVolume;

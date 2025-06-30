@@ -31,14 +31,14 @@ public class SecurityConfig {
             .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
         )
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers(
-                "/error",
-                "/api/**",
-                "/uploads/**",
-                "/**/*.png", "/**/*.jpg", "/**/*.jpeg", "/**/*.gif", "/**/*.css", "/**/*.js"  // 모든 정적 리소스 허용
-            ).permitAll()
-            .anyRequest().authenticated()
-        )
+        .requestMatchers(
+            "/error",
+            "/api/**",
+            "/uploads/**",
+            "/static/**"  // /static/으로 시작하는 모든 경로 허용
+        ).permitAll()
+        .anyRequest().authenticated()
+    )
         .exceptionHandling(ex -> ex
             .authenticationEntryPoint((request, response, authException) -> {
                 response.setStatus(401);
